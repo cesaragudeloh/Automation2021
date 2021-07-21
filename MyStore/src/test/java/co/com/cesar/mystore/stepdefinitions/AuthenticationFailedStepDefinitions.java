@@ -1,9 +1,12 @@
 package co.com.cesar.mystore.stepdefinitions;
 
+import co.com.cesar.mystore.models.LoginData;
 import co.com.cesar.mystore.questions.GetText;
 import co.com.cesar.mystore.tasks.Go;
-import co.com.cesar.mystore.tasks.SignIn;
+import co.com.cesar.mystore.tasks.Sign;
 import cucumber.api.java.en.*;
+
+import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
@@ -22,16 +25,16 @@ public class AuthenticationFailedStepDefinitions {
     }
 
     @When("^login with invalid credentials$")
-    public void loginWithInvalidCredentials() {
+    public void loginWithInvalidCredentials(List<LoginData> data) {
         theActorCalled(ACTOR_NAME).attemptsTo(
-                SignIn.inMyStore()
+                Sign.inMyStore(data)
         );
     }
 
     @Then("^the system does not allow entry$")
-    public void theSystemDoesNotAllowEntry() {
+    public void theSystemDoesNotAllowEntry(List<LoginData> data) {
         theActorInTheSpotlight().should(
-                seeThat("Error login", GetText.ofTarget(ERROR_LOGIN), containsString(ERROR_LOGIN_LABEL))
+                seeThat(ERROR_LOGIN_LABEL, GetText.ofTarget(ERROR_LOGIN), containsString(data.get(0).getMessageError()))
         );
     }
 
