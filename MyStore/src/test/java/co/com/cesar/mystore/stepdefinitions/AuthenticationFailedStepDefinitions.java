@@ -1,24 +1,39 @@
 package co.com.cesar.mystore.stepdefinitions;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import co.com.cesar.mystore.questions.GetText;
+import co.com.cesar.mystore.tasks.Go;
+import co.com.cesar.mystore.tasks.SignIn;
+import cucumber.api.java.en.*;
+
+import static org.hamcrest.Matchers.containsString;
+
+import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
+import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static co.com.cesar.mystore.utils.Constants.*;
+import static co.com.cesar.mystore.userinterfaces.HomePage.*;
 
 public class AuthenticationFailedStepDefinitions {
 
     @Given("^go to the My Store homepage$")
     public void goToTheMyStoreHomepage() {
-        System.out.println("GIVEN");
+        theActorCalled("").wasAbleTo(
+                Go.toMyStore()
+        );
     }
 
     @When("^login with invalid credentials$")
     public void loginWithInvalidCredentials() {
-        System.out.println("WHEN");
+        theActorCalled("").attemptsTo(
+                SignIn.inMyStore()
+        );
     }
 
     @Then("^the system does not allow entry$")
     public void theSystemDoesNotAllowEntry() {
-        System.out.println("THEN");
+        theActorInTheSpotlight().should(
+                seeThat("Error login", GetText.ofTarget(ERROR_LOGIN), containsString(ERROR_LOGIN_LABEL))
+        );
     }
 
 
