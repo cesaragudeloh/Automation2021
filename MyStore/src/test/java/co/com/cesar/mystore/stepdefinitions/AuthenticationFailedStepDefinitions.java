@@ -6,7 +6,6 @@ import co.com.cesar.mystore.tasks.SignIn;
 import cucumber.api.java.en.*;
 
 import static org.hamcrest.Matchers.containsString;
-
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
@@ -17,14 +16,14 @@ public class AuthenticationFailedStepDefinitions {
 
     @Given("^go to the My Store homepage$")
     public void goToTheMyStoreHomepage() {
-        theActorCalled("").wasAbleTo(
+        theActorCalled(ACTOR_NAME).wasAbleTo(
                 Go.toMyStore()
         );
     }
 
     @When("^login with invalid credentials$")
     public void loginWithInvalidCredentials() {
-        theActorCalled("").attemptsTo(
+        theActorCalled(ACTOR_NAME).attemptsTo(
                 SignIn.inMyStore()
         );
     }
