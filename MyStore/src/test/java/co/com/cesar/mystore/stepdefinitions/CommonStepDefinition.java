@@ -1,13 +1,15 @@
-package co.com.cesar.mystore.utils;
+package co.com.cesar.mystore.stepdefinitions;
 
-import cucumber.api.java.Before;
+import io.cucumber.java.Before;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 
-public class AutomationHook {
+
+public class CommonStepDefinition {
 
     @Before
-    public void setUp() {
+    public void prepareStage(){
         OnStage.setTheStage(new OnlineCast());
     }
+
 }

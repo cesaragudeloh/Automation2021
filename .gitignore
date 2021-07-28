@@ -21,7 +21,6 @@ log/
 
 # Gradle
 */.gradle/*
-*/gradle/*
 .gradle/*
 */.gradle
 */build/
@@ -30,7 +29,7 @@ log/
 *.lock
 #ignore los .exe
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+
 
 #ignorar carpeta build
 */build/*

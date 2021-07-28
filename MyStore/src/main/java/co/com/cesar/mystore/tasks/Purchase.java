@@ -6,7 +6,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Open;
 
-public class Go implements Task {
+public class Purchase implements Task {
 
 
     @Override
@@ -16,7 +16,7 @@ public class Go implements Task {
         );
     }
 
-    public static Go toMyStore() {
-        return Instrumented.instanceOf(Go.class).withProperties();
+    public static Purchase aProduct() {
+        return Instrumented.instanceOf(Purchase.class).withProperties();
     }
 }
