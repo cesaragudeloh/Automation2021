@@ -18,7 +18,7 @@ public class BuyProductStepDefinitions {
     @Given("^the user enters the store with username (.*) and password (.*)$")
     public void theUserEntersTheStore(String username, String password) {
         theActorCalled(ACTOR).wasAbleTo(
-                Login.atTheStore(username, password)
+                Login.with().username(username).andPassword(password)
         );
     }
 
