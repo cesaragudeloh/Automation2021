@@ -1,17 +1,31 @@
 package co.com.cesar.mystore.stepdefinitions;
 
+import co.com.cesar.mystore.tasks.Login;
 import co.com.cesar.mystore.tasks.Purchase;
+
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static co.com.cesar.mystore.utils.Constants.ACTOR;
 
 public class BuyProductStepDefinitions {
 
-    @When("^(.*) make a purchase online$")
-    public void cesarMakeAPurchaseOnline(String actor) {
-        theActorCalled(actor).attemptsTo(
+
+    @Given("^the user enters the store with username (.*) and password (.*)$")
+    public void theUserEntersTheStore(String username, String password) {
+        theActorCalled(ACTOR).wasAbleTo(
+                Login.atTheStore(username, password)
+        );
+    }
+
+
+    @When("^he make a purchase online$")
+    public void heMakeAPurchaseOnline() {
+        theActorInTheSpotlight().attemptsTo(
                 Purchase.aProduct()
         );
     }
